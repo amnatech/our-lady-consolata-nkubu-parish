@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+@import '$lib/styles/app.css';
+@import '$lib/assets/icons/remixicons/remixicon.css';
+@import '$lib/ui-button/button.min.css';
+@import '$lib/ui-table/table.min.css';
+@import '$lib/ui-icon/icon.min.css';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@config "../../tailwind.config.js";
+
+/* @theme { */
+     /* Define custom theme variables here */
+    /* --color-main: #208836;
+
+    --primary-dark:#011627;
+    --primary-light:#FDFFFC;
+    --primary-text-light:#1d3510;
+    --primary-text-dark:#f2f2f2;
+   
+
+    --secondary-light:#F71735;
+    --secondary-dark:#F71735;
+    --secondary-text-light:black;
+    --secondary-text-dark:#f2f2f2;
+
+
+    --tertiary-light:#41EAD4;
+    --tertiary-dark:#41EAD4;
+    --tertiary-text-light:black;
+    --tertiary-text-dark:#f2f2f2; */
+/* } */
+

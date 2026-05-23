@@ -1,0 +1,24 @@
+[18-Nov-2025 11:18:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php:8
+Stack trace:
+#0 /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php(8): mysqli_connect('localhost', 'newageme_keep', Object(SensitiveParameterValue), 'newageme_keep_d...')
+#1 /home/newageme/keep.newagemedia.co.ke/api/projects.php(3): require('/home/newageme/...')
+#2 {main}
+  thrown in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php on line 8
+[18-Nov-2025 11:18:21 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php:8
+Stack trace:
+#0 /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php(8): mysqli_connect('localhost', 'newageme_keep', Object(SensitiveParameterValue), 'newageme_keep_d...')
+#1 /home/newageme/keep.newagemedia.co.ke/api/gallery.php(3): require('/home/newageme/...')
+#2 {main}
+  thrown in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php on line 8
+[18-Nov-2025 11:18:27 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php:8
+Stack trace:
+#0 /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php(8): mysqli_connect('localhost', 'newageme_keep', Object(SensitiveParameterValue), 'newageme_keep_d...')
+#1 /home/newageme/keep.newagemedia.co.ke/api/projects.php(3): require('/home/newageme/...')
+#2 {main}
+  thrown in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php on line 8
+[18-Nov-2025 11:18:27 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Too many connections in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php:8
+Stack trace:
+#0 /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php(8): mysqli_connect('localhost', 'newageme_keep', Object(SensitiveParameterValue), 'newageme_keep_d...')
+#1 /home/newageme/keep.newagemedia.co.ke/api/gallery.php(3): require('/home/newageme/...')
+#2 {main}
+  thrown in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php on line 8

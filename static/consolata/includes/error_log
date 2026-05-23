@@ -1,0 +1,10 @@
+[18-Nov-2025 09:49:31 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'newageme_keep'@'localhost' to database 'keep_db' in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php:8
+Stack trace:
+#0 /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php(8): mysqli_connect('localhost', 'newageme_keep', Object(SensitiveParameterValue), 'keep_db')
+#1 {main}
+  thrown in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php on line 8
+[18-Nov-2025 09:50:46 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'newageme_keep'@'localhost' to database 'newageme_keep_db' in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php:8
+Stack trace:
+#0 /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php(8): mysqli_connect('localhost', 'newageme_keep', Object(SensitiveParameterValue), 'newageme_keep_d...')
+#1 {main}
+  thrown in /home/newageme/keep.newagemedia.co.ke/api/includes/connect.php on line 8
