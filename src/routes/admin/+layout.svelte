@@ -7,18 +7,21 @@
 	import Segment from '$lib/components/segment.svelte';
 	import Adminnav from '$lib/components/adminnav.svelte';
 
+
+
 	const liu=current_liu();
 
 	let showUserNav=$state(false);
 
-
-		const openUserNav=()=>{
+	const openUserNav=()=>{
 		showUserNav=true;
 	}
 
 	const closeUserNav=()=>{
 		showUserNav=false;
 	}
+
+
 
 	let { children } = $props();
 
@@ -63,7 +66,7 @@
 					<Segment>
 				<div class="" slot="content">
 					<div class="">
-						<Usernav/>
+						<Adminnav on:navigate={closeUserNav}/>
 					</div>
 	
 				</div>
@@ -89,7 +92,7 @@
 		</div>
 		<div class="main-col flex-3">
 			
-{@render children()}
+			{@render children()}
 		</div>
 	</div>
 </div>

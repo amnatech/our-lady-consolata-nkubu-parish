@@ -88,18 +88,6 @@
   <!-- Dashboard Header -->
   <div class="dashboard-header">
     <h2><i class="fas fa-chart-line"></i> Statistics Dashboard</h2>
-    <div class="header-actions">
-      <button class="btn btn-primary" on:click={fetchStats} disabled={isLoading}>
-        <i class="fas fa-sync-alt {isLoading ? 'fa-spin' : ''}"></i>
-        {isLoading ? 'Loading...' : 'Refresh Data'}
-      </button>
-      <button class="btn btn-secondary" on:click={incrementAll}>
-        <i class="fas fa-plus"></i> Increment All
-      </button>
-      <button class="btn btn-danger" on:click={resetAll}>
-        <i class="fas fa-undo"></i> Reset All
-      </button>
-    </div>
   </div>
   
   <!-- Tabs Navigation -->

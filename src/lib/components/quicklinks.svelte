@@ -47,16 +47,19 @@
         QuickLinks
     </div>
         <div class="" slot="content">
-            <div class="flex gap-2 py-2">
+            <div class="flex gap-2 py-2 flex-wrap">
                 {#each links as ql}
-                    <a href="{ql.url}" class="p-2 shadow-md hover:bg-slate-100 m-2">
-                        <div class="">
-                            <img src="{ql.icon}" alt="ql.name" class="w-18 h-18">
-                        </div>
-                        <div class="text-center capitalize">
-                            {ql.name}
-                        </div>
-                    </a>
+                    <div class="p-2 shadow-md hover:bg-slate-100 m-2 w-[25%] md:w-[16%]">
+                        <a href="{ql.url}" >
+                                <div class="text-center">
+                                    <img src="{ql.icon}" alt="ql.name" class="w-18 h-18 m-auto">
+                                </div>
+                                <div class="text-center capitalize p-2 text-sm">
+                                    {ql.name}
+                                </div>
+                            </a>
+                    </div>
+ 
                 {/each}
             </div>
         </div>

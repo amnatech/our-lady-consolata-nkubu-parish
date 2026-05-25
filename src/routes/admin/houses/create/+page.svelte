@@ -77,7 +77,7 @@
             if(RES.success){
                 Notify.success(RES.message)
 
-                goto('/user/activities');
+                goto('/admin/houses');
             }else{
                 Notify.failure(RES.message)
             }
@@ -109,7 +109,7 @@
     <div class="my-2 md:pl-2">
         <Segment>
             <div class="" slot="title">
-                <a href="/user/activities">
+                <a href="/admin/houses">
                  <button class="ui mini icon purple basic button">
                     <i class="left arrow icon"></i> Back
                 </button>
@@ -141,8 +141,8 @@
                     </div>
 
                     <div class="field required">
-                        <label for="subtitle">Subtitle</label> <br>
-                        <input type="text" name="subtitle" id="subtitle" bind:value={houseEmail} placeholder="Email" required>
+                        <label for="email">Email</label> <br>
+                        <input type="text" name="email" id="email" bind:value={houseEmail} placeholder="Email" required>
                     </div>
                 </div>
 
@@ -152,7 +152,7 @@
 
                     <div class="field required ">
                         <label for="houseLocation">Location</label> <br>
-                        <input type="text" name="houseLocation" id="houseLocation" bind:value={houseLocation} placeholder="houseLocation" required>
+                        <input type="text" name="houseLocation" id="houseLocation" bind:value={houseLocation} placeholder="Location" required>
                     </div>
 
             

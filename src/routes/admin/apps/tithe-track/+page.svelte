@@ -239,6 +239,19 @@
         filter_prayer_houses=filteredHouses;
     }
 
+    const update_serial=(tithes)=>{
+
+        if(tithes.length<9){
+             return `00${tithes.length+1}/${new Date().getFullYear().toString().slice(1)}`;
+
+        }else if(tithes.length<100){
+            return `0${tithes.length+1}/${new Date().getFullYear().toString().slice(1)}`;
+
+        }else{
+             return `${tithes.length+1}/${new Date().getFullYear().toString().slice(1)}`;
+        }
+    }
+
     onMount(async()=>{
 
         setTimeout(async ()=>{
@@ -253,7 +266,7 @@
 
         tithe_stats=await get_tithe_stats();
 
-        serial=`${tithes.length+1}/${new Date().getFullYear().toString().slice(1)}`
+        serial=update_serial(tithes);
 
         make_filters_data(tithes);
 
@@ -320,7 +333,9 @@
                             </button>
 
                             <!-- svelte-ignore a11y_consider_explicit_label -->
-                            <button class="ui basic purple button icon mini p-2">
+                            <button  onclick={()=>{
+                                showSearchModal=true
+                            }} class="ui basic purple button icon mini p-2">
                                 <i class="plus icon"></i>
                             </button>
 
@@ -410,7 +425,7 @@
         
         <div class="pagination-controls">
           <div class="pagination-size">
-            <label>Show:</label>
+            <label for="page-size">Show:</label>
             <select bind:value={itemsPerPage} class="page-size-select">
               {#each pageOptions as option}
                 <option value={option}>{option}</option>
@@ -503,7 +518,8 @@
 
 {#if searchUser}
     <AddTithe user={searchUser} {serial} on:close={async()=>{
-        tithes=await get_tithes()
+        tithes=await get_tithes();
+        serial=update_serial(tithes);
         searchUser=undefined;
         showSearchModal=false;
     }}/>

@@ -113,7 +113,7 @@
 </script>
 
 <main class="fixed top-0 left-0 w-[100vw] h-[100vh] z-1000 p-5">
-<div class="content m-4 bg-red-500 p-4">
+<div class="content m-4 p-4">
     <Segment>
         <div class="" slot="title">
             <i class="plus icon"></i> Add Tithe

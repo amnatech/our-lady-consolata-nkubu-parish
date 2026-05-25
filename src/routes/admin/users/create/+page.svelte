@@ -140,7 +140,7 @@
     <div class="my-2 md:pl-2">
         <Segment>
             <div class="" slot="title">
-                <a href="/user/activities">
+                <a href="/admin/users">
                  <button class="ui mini icon purple basic button">
                     <i class="left arrow icon"></i> Back
                 </button>

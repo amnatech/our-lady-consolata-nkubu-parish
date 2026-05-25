@@ -2,8 +2,8 @@
     export let tithes=[];
 </script>
 
-<main>
-    <table class="ui striped unstackable compact table">
+<main class="overflow-x-auto">
+    <table class="ui striped unstackable single line table">
         <thead>
             <tr>
                 <th>No</th>
@@ -16,7 +16,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
             {#each tithes as t,i}
                 <tr>
                     <td>{i+1}</td>
@@ -27,7 +27,13 @@
                     <td>{t.month}</td>
                     <td>{t.created_at}</td>
                     <td>
-                        View
+                        <i class="red delete icon"></i>
+
+                        <i class="orange edit icon"></i>
+
+                        <i class="green eye icon"></i>
+
+
                     </td>
                 </tr>
             {/each}
