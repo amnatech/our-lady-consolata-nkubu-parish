@@ -1,9 +1,9 @@
 <script>
 	import Segment from "./segment.svelte";
-    import GroupIcon from "$lib/assets/icons/icons8-group-64.png";
+    import GroupIcon from "$lib/assets/icons/icons8-user-groups-96.png";
     import ToolIcon from "$lib/assets/icons/icons8-tools-100.png";
     import TrackIcon from "$lib/assets/icons/icons8-tracker-64.png";
-    import ChurchIcon from "$lib/assets/icons/church.png";
+    import ChurchIcon from "$lib/assets/icons/icons8-church-60.png";
     import SettingsIcon from "$lib/assets/icons/icons8-settings-94.png";
 
     import EventsIcon from "$lib/assets/icons/icons8-events-64_1.png";
@@ -14,11 +14,10 @@
     import ReadingsIcon from "$lib/assets/icons/book.png";
     import AlterIcon from "$lib/assets/icons/altar.png";
 
-
-
     let userGroup="admin";
 
-    let links=[
+
+        let links=[
         {
             name:"calendar",
             url:`/${userGroup}/apps/calendar`,
@@ -81,18 +80,15 @@
 </script>
 <main>
     <Segment>
-    <div class="" slot="title">
-        QuickLinks
-    </div>
         <div class="" slot="content">
-            <div class="flex gap-2 py-2 flex-wrap">
+            <div class="flex gap-2 justify-between py-2 flex-wrap">
                 {#each links as ql}
-                    <div class="p-2 shadow-md hover:bg-slate-100 m-2 w-[25%] md:w-[13%]">
+                    <div class="p-2 shadow-md hover:bg-slate-100 m-2 w-[22%]">
                         <a href="{ql.url}" >
                                 <div class="text-center">
                                     <img src="{ql.icon}" alt="ql.name" class="w-14 h-14 m-auto">
                                 </div>
-                                <div class="text-center capitalize p-2 text-sm">
+                                <div class="text-center capitalize p-2 text-xs">
                                     {ql.name}
                                 </div>
                             </a>

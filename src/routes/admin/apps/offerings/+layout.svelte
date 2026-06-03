@@ -1,9 +1,9 @@
 <script>
 	import Title from '$lib/components/title.svelte';
 
-let title="Tithe Tracker";
+let title="Offerings Tracker";
 
-let subtitle="View & Manage Tithe Contributions";
+let subtitle="View & Manage offering Contributions";
 	
 let { children } = $props();
 

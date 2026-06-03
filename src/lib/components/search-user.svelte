@@ -32,13 +32,13 @@
 
         filteredUsers=filtered;
 
-        console.log(filteredUsers);
+        // console.log(filteredUsers);
     }
 
     onMount(async()=>{
         users=await get_users();
 
-        console.log(users);
+        // console.log(users);
     })
 
 </script>
@@ -69,13 +69,12 @@
                         return
                     }
 
-                    search(q);
+                    search(q.toLowerCase());
                 }}>
             </div>
 
-            <div class="py-3">
-
-                <table class="ui unstackable striped table">
+            <div class="py-3 overflow-auto">
+                <table class="ui unstackable  single line striped table">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -164,5 +163,10 @@
     main{
         background: rgba(0, 0, 0, 0.377);
         backdrop-filter: blur(2px);
+    }
+
+        .content{
+        max-height: 80vh;
+        overflow: auto;
     }
 </style>

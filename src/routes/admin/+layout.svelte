@@ -6,12 +6,18 @@
 	import { goto } from '$app/navigation';
 	import Segment from '$lib/components/segment.svelte';
 	import Adminnav from '$lib/components/adminnav.svelte';
+	import AdminSidebar from '$lib/components/admin-sidebar.svelte';
+	import { page } from '$app/stores';
 
 
 
 	const liu=current_liu();
 
+	let showSideBar=$state(false);
+
 	let showUserNav=$state(false);
+
+	let currentUrl=$page.url.pathname;
 
 	const openUserNav=()=>{
 		showUserNav=true;
@@ -21,6 +27,16 @@
 		showUserNav=false;
 	}
 
+
+	$effect(()=>{
+		// console.log(currentUrl);
+		if(currentUrl!=$page.url.pathname){
+			console.log($page.url.pathname);
+			showSideBar=false;
+		}
+
+	})
+	
 
 
 	let { children } = $props();
@@ -98,5 +114,28 @@
 </div>
 
 
+<div class="cta_bar fixed z-10000 bottom-0 right-2 m-5 cursor">
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div onclick={()=>{
+		showSideBar=true;
+	}} class="cta-btn text-4xl bg-wekebio-red text-white text-center p-5 shadow-lg cursor-pointer hover:bg-red-700">
+		<i class="ui cog icon"></i>
+	</div>
+</div>
 
 
+<!-- side nav  -->
+{#if showSideBar}
+	<AdminSidebar on:close={()=>{
+		showSideBar=false;
+	}}/>
+{/if}
+<!-- side nav  -->
+
+
+<style>
+	.cta-btn{
+		border-radius: 50%;
+	}
+</style>

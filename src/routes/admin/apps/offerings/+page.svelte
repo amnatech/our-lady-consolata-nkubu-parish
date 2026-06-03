@@ -9,6 +9,7 @@
 	import { fetch_resource } from "$lib/methods/functions";
 	import { add_commas, format_date } from "$lib/methods/methods";
 	import { generate_pdf } from "$lib/methods/pdf-make.js";
+	import dayjs from "dayjs";
 	import { onMount } from "svelte";
 
     let showSearchModal=false;
@@ -102,13 +103,13 @@
 		{ text: 'Name', bold: true, fontSize: 9 },
 		{ text: 'Serial', bold: true, fontSize: 9 },
 		{ text: 'House', bold: true, fontSize: 9 },
-		{ text: 'Amount', bold: true, fontSize: 9 },
 		{ text: 'Month', bold: true, fontSize: 9 },
 		{ text: 'Phone', bold: true, fontSize: 9 },
-		{ text: 'Created', bold: true, fontSize: 9 }
+		{ text: 'Created', bold: true, fontSize: 9 },
+		{ text: 'Amount', bold: true, fontSize: 9 }
 	];
 
-	const pdf_column_widths = ['6%', '20%', '9%', '20%', '10%', '10%', '16%', '11%'];
+	const pdf_column_widths = ['6%', '18%', '9%', '20%', '10%', '14%', '14%', '11%'];
 
 	const pdf_make_rows = (data) => {
 		let rows = [];
@@ -137,14 +138,8 @@
 					style: 'reportValue',
 					fillColor: i % 2 == 0 ? '#f7f0f0' : '#f7f7f7'
 				},
-
 				{
-					text: add_commas(parseFloat(p.amount)),
-					style: 'reportValue',
-					fillColor: i % 2 == 0 ? '#f7f0f0' : '#f7f7f7'
-				},
-				{
-					text: p.month,
+					text: dayjs(p.month).format('MMM YYYY'),
 					style: 'reportValue',
 					fillColor: i % 2 == 0 ? '#f7f0f0' : '#f7f7f7'
 				},
@@ -157,9 +152,58 @@
 					text: format_date(p.created_at, 'YYYY-MM-DD'),
 					style: 'reportValue',
 					fillColor: i % 2 == 0 ? '#f7f0f0' : '#f7f7f7'
+				},
+
+				{
+					text: add_commas(parseFloat(p.amount)),
+					style: 'reportValue',
+					fillColor: i % 2 == 0 ? '#f7f0f0' : '#f7f7f7'
 				}
 			]);
 		});
+
+        rows.push([
+            {
+                text:"##",
+                style:'footerValue',
+                fillColor:'#f7f7f7'
+            },
+                        {
+                text:"Totals",
+                style:'footerValue',
+                fillColor:'#f7f7f7'
+            },
+                        {
+                text:"--",
+                style:'footerValue',
+                fillColor:'#f7f7f7'
+            },
+                        {
+                text:"--",
+                style:'footerValue',
+                fillColor:'#f7f7f7'
+            },
+             {
+                text:"--",
+                style:'footerValue',
+                fillColor:'#f7f7f7'
+            },
+                        {
+                text:"--",
+                style:'footerValue',
+                fillColor:'#f7f7f7'
+            },
+                {
+                text:dayjs().format('MMM DD YY'),
+                style:'footerValue',
+                fillColor:'#f7f7f7'
+            },
+              {
+                text:add_commas(data.map((d)=>parseFloat(d.amount)).reduce((a,b)=>a+b,0)),
+                style:'footerValue',
+                fillColor:'#f7f7f7'
+            }
+        ])
 
 		return rows;
 	};
@@ -409,90 +453,90 @@
                 <!-- search & filter -->
                 <br>
                 <div class="my-3 shadow-lg p-3">
-                    <TithesList tithes={filteredTithes}/>
+                    <TithesList tithes={paginatedTithes}/>
                 </div>
                 <div class="">
                           <!-- Pagination -->
-      <div class="pagination-container">
-        <div class="pagination-info">
-          Showing {startItem} to {endItem} of {filteredTithes.length} entries
-          {#if filters.search || filters.role !== 'all' || filters.status !== 'all'}
-            <span class="filtered-info">
-              (filtered from {tithes.length} total tithes)
-            </span>
-          {/if}
-        </div>
-        
-        <div class="pagination-controls">
-          <div class="pagination-size">
-            <label for="page-size">Show:</label>
-            <select bind:value={itemsPerPage} class="page-size-select">
-              {#each pageOptions as option}
-                <option value={option}>{option}</option>
-              {/each}
-            </select>
-          </div>
-          
-          <div class="pagination-buttons">
-            <!-- svelte-ignore a11y_consider_explicit_label -->
-            <button 
-              onclick={() => currentPage = 1}
-              disabled={currentPage === 1}
-              class="pagination-btn"
-            >
-              <i class="fas fa-angle-double-left"></i>
-            </button>
-            
-            <!-- svelte-ignore a11y_consider_explicit_label -->
-            <button 
-              onclick={() => currentPage--}
-              disabled={currentPage === 1}
-              class="pagination-btn"
-            >
-              <i class="fas fa-angle-left"></i>
-            </button>
-            
-            {#each Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-              let pageNum;
-              if (totalPages <= 5) {
-                pageNum = i + 1;
-              } else if (currentPage <= 3) {
-                pageNum = i + 1;
-              } else if (currentPage >= totalPages - 2) {
-                pageNum = totalPages - 4 + i;
-              } else {
-                pageNum = currentPage - 2 + i;
-              }
-              return pageNum;
-            }) as pageNum}
-              <button 
-                onclick={() => currentPage = pageNum}
-                class="pagination-btn {currentPage === pageNum ? 'active' : ''}"
-              >
-                {pageNum}
-              </button>
-            {/each}
-            
-            <!-- svelte-ignore a11y_consider_explicit_label -->
-            <button 
-              onclick={() => currentPage++}
-              disabled={currentPage === totalPages}
-              class="pagination-btn"
-            >
-              <i class="fas fa-angle-right"></i>
-            </button>
-            
-            <!-- svelte-ignore a11y_consider_explicit_label -->
-            <button 
-              onclick={() => currentPage = totalPages}
-              disabled={currentPage === totalPages}
-              class="pagination-btn"
-            >
-              <i class="fas fa-angle-double-right"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                    Showing {startItem} to {endItem} of {filteredTithes.length} entries
+                    {#if filters.search || filters.role !== 'all' || filters.status !== 'all'}
+                        <span class="filtered-info">
+                        (filtered from {tithes.length} total tithes)
+                        </span>
+                    {/if}
+                    </div>
+                    
+                    <div class="pagination-controls">
+                    <div class="pagination-size">
+                        <label for="page-size">Show:</label>
+                        <select bind:value={itemsPerPage} class="page-size-select">
+                        {#each pageOptions as option}
+                            <option value={option}>{option}</option>
+                        {/each}
+                        </select>
+                    </div>
+                    
+                    <div class="pagination-buttons">
+                        <!-- svelte-ignore a11y_consider_explicit_label -->
+                        <button 
+                        onclick={() => currentPage = 1}
+                        disabled={currentPage === 1}
+                        class="pagination-btn"
+                        >
+                        <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        
+                        <!-- svelte-ignore a11y_consider_explicit_label -->
+                        <button 
+                        onclick={() => currentPage--}
+                        disabled={currentPage === 1}
+                        class="pagination-btn"
+                        >
+                        <i class="fas fa-angle-left"></i>
+                        </button>
+                        
+                        {#each Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                            pageNum = i + 1;
+                        } else if (currentPage <= 3) {
+                            pageNum = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                            pageNum = totalPages - 4 + i;
+                        } else {
+                            pageNum = currentPage - 2 + i;
+                        }
+                        return pageNum;
+                        }) as pageNum}
+                        <button 
+                            onclick={() => currentPage = pageNum}
+                            class="pagination-btn {currentPage === pageNum ? 'active' : ''}"
+                        >
+                            {pageNum}
+                        </button>
+                        {/each}
+                        
+                        <!-- svelte-ignore a11y_consider_explicit_label -->
+                        <button 
+                        onclick={() => currentPage++}
+                        disabled={currentPage === totalPages}
+                        class="pagination-btn"
+                        >
+                        <i class="fas fa-angle-right"></i>
+                        </button>
+                        
+                        <!-- svelte-ignore a11y_consider_explicit_label -->
+                        <button 
+                        onclick={() => currentPage = totalPages}
+                        disabled={currentPage === totalPages}
+                        class="pagination-btn"
+                        >
+                        <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                    </div>
+                </div>
                 </div>
             </div>
         {/if}

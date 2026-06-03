@@ -132,7 +132,7 @@
                 e.preventDefault();
                 create_tithe();
             }}>
-                <div class="two fields  flex gap-2 justify-between p-2">
+                <div class="two fields  flex gap-2 justify-between p-2 flex-col md:flex-row">
                      <div class="field">
                         <label for="name">Member Name</label> <br>
                         <input type="text" name="name" placeholder="John Doe" bind:value={name} readonly>
@@ -149,7 +149,7 @@
                     </div>
                  </div>
        
-                <div class="two fields  flex gap-2 justify-between p-2">
+                <div class="two fields  flex gap-2 justify-between p-2 flex-col md:flex-row">
                     <div class="field">
                         <label for="amount">Tithe Amount</label> <br>
                         <input type="number" name="amount" placeholder="00.00" bind:value={titheAmount} required min="10">
@@ -161,7 +161,7 @@
                     </div>
                 </div>
 
-                <div class="two fields  flex gap-2 justify-between p-2">
+                <div class="two fields  flex gap-2 justify-between p-2 flex-col md:flex-row">
                     <div class="field">
                         <label for="amount">Serial No.</label> <br>
                         <input type="text" name="serial-no" placeholder="001/026" bind:value={serialNo} required>
@@ -188,6 +188,11 @@
     main{
         background: rgba(0, 0, 0, 0.377);
         backdrop-filter: blur(2px);
+    }
+
+    .content{
+        max-height: 80vh;
+        overflow: auto;
     }
 
     .field{

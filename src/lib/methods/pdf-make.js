@@ -288,6 +288,13 @@ export const generate_pdf = (title, documentNumber, filters, columnTitles, colum
                 fontSize: 9,
                 margin: 1
             },
+             footerValue: {
+                fontSize: 10,
+                margin: 1,
+                bold:true,
+                color:"purple"
+
+            },
 
             icon: { font: "Fontello" },
         },
